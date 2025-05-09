@@ -1,0 +1,16 @@
+version: '3.6'
+
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    container_name: gitlab
+    hostname: 'localhost'
+    restart: always
+    ports:
+      - '8080:80'
+      - '4443:443'       # Acceso web (http://localhost:8929)
+      - '2222:22'       # SSH para repos (opcional)
+    volumes:
+      - './config:/etc/gitlab'
+      - './logs:/var/log/gitlab'
+      - './data:/var/opt/gitlab'
